@@ -1,0 +1,1 @@
+A simple python wrapper around the project [lean4export](https://github.com/leanprover/lean4export), which compares the (very large) output to the output of an empty file to get more interpretable results.
