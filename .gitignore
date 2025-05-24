@@ -1,3 +1,10 @@
+# editor data
 .vscode/
 .idea/
+
+# python caching
 __pycache__/
+
+# code output
+examples/*.txt
+output_empty.txt

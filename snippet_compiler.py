@@ -5,7 +5,7 @@ import shutil
 
 EMPTY_OUTPUT_FILE = "output_empty.txt"
 
-TEMP_LEAN_MODULE = "temp"
+TEMP_LEAN_MODULE = "snippet_compiler_temp_module"
 TEMP_OUTPUT_FILE = "temp_output.txt"
 
 LEAN4EXPORT_FOLDER = "lean4export"
@@ -21,6 +21,8 @@ def compile_local_lean_module(module, output_file: str):
     command_env["LEAN_PATH"] = "."
     subprocess.run(f"lake exe lean4export {TEMP_LEAN_MODULE} > {TEMP_OUTPUT_FILE}", shell=True, env=command_env, cwd=LEAN4EXPORT_FOLDER)
     os.remove(os.path.join(LEAN4EXPORT_FOLDER, module + ".olean"))
+    if os.path.exists(output_file):
+        os.remove(output_file)
     os.rename(os.path.join(LEAN4EXPORT_FOLDER, TEMP_OUTPUT_FILE), output_file)
 
 def compile_lean_file(input_file: str, output_file: str):
